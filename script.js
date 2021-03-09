@@ -1,4 +1,3 @@
-
 const transactionsUl = document.querySelector('#transactions')
 const incomeDisplay = document.querySelector('#money-plus')
 const expenseDisplay = document.querySelector('#money-minus')
@@ -6,7 +5,6 @@ const balanceDisplay = document.querySelector('#balance')
 const form = document.querySelector('#form')
 const inputTransactionName = document.querySelector('#text')
 const inputTransactionAmount = document.querySelector('#amount')
-
 
 const localStorageTransactions = JSON.parse(localStorage
     .getItem('transactions'))
@@ -18,14 +16,12 @@ const removeTransaction = ID => {
      transaction.id !== ID) 
      updateLocalStorage()
     init()
-
 }
 const addTransactionIntoDOM = transaction => {
     const operator = transaction.amount < 0 ? '-' : '+'
     const CSSClass = transaction.amount < 0 ? 'minus' : 'plus'
     const amountWithoutOperator = Math.abs(transaction.amount)
     const li = document.createElement('li')
-
     li.classList.add(CSSClass)
     li.innerHTML = `
     ${transaction.name} <span>${operator} R$ ${amountWithoutOperator}</span>
@@ -34,13 +30,7 @@ const addTransactionIntoDOM = transaction => {
     </button>
     `
    transactionsUl.append(li)
-
-{/*
-    <li class="minus">
-        Salário <span>-$400</span><button class="delete-btn">x</button>
-    </li>
-*/}
-
+{}
 }
 const updateBalanceValues = () => {
    const transactionsAmounts =  transactions.map(transaction => transaction.amount)
@@ -55,11 +45,9 @@ const updateBalanceValues = () => {
     .filter(value => value < 0)
     .reduce((accumulator, value) => accumulator + value, 0))
     .toFixed(2)
-
    balanceDisplay.textContent = `R$ ${total}`
    incomeDisplay.textContent = `R$ ${income }`
    expenseDisplay.textContent = `R$ ${expense}`
-
 }
 const init = () => {
  transactionsUl.innerHTML = ''   
@@ -81,7 +69,6 @@ const transactionAmount = inputTransactionAmount.value.trim()
    alert('Por favor preencha os campo da transação')  
    return
  }  
-
  const transaction = {
      id: generateID(),
      name: transactionName,
@@ -92,5 +79,4 @@ init()
 updateLocalStorage()
 inputTransactionName.value = ''
 inputTransactionAmount.value = ''
-
 })
